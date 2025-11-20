@@ -1,10 +1,10 @@
-import time as time
+import time 
 import board
 import adafruit_dht
 
 dhtDevice = adafruit_dht.DHT11(board.D18)
 f = open("tempText.txt","w")
-f.write("nr. Tijd Temp.(°C) Vichtigheid(%) \n")
+f.write("nr. Tijd Temp.(°C) \n")
 f.close()
 teller = 1
 
@@ -14,7 +14,7 @@ while True:
         humidity = dhtDevice.humidity
         tijd = time.strftime("%H:%M:%S")
         f = open("tempText.txt","a")
-        f.write(f"{teller} {tijd}   {temperature_c}     {humidity}\n")
+        f.write(f"{teller} {tijd}   {temperature_c} \n")
         f.close()
         teller += 1
     except RuntimeError as error:
