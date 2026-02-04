@@ -9,6 +9,7 @@ dhtDevice = adafruit_dht.DHT11(board.D18)
 
 f=open("DHT11_cloud.csv" , "w")
 f.write("Temp, Humidity \n")
+f.close()
 while True:
     try:        
         temperature_c = dhtDevice.temperature
