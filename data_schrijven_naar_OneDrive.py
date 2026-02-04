@@ -16,6 +16,7 @@ while True:
         humidity = dhtDevice.humidity
         f.open("DHT11_cloud.csv", "a")
         f.write(f"{temperature_c}, {humidity} \n")
+        f.close()
         subprocess.run(["/bin/bash", "/home/rpi/autopush.sh"])
 
     except RuntimeError as error:
