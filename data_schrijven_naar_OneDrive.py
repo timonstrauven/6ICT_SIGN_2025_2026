@@ -15,6 +15,7 @@ while True:
         temperature_f = temperature_c * (9/5) + 32
         humidity = dhtDevice.humidity
         f.write(f"{temperature_c}, {humidity} \n")
+        subprocess.run(["/bin/bash", "/home/rpi/autopush.sh"])
 
     except RuntimeError as error:
         print(error.args[0])
@@ -23,5 +24,4 @@ while True:
     except Exception as error:
         dhtDevice.exit()
         raise error
-    subprocess.run(["/bin/bash", "/home/rpi/autopush.sh"])
   
