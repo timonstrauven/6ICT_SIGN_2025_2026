@@ -1,7 +1,7 @@
 from gpiozero import AngularServo #importeert klasse AngularServo van module gpiozero
 import adafruit_dht #importeert library adafruit_dht
 import board #importeert de module board
-import time
+import time # importeert de module time
 dhtDevice = adafruit_dht.DHT11(board.D18) #variabele dhtDevice --> DHT11 op pin D18
 
 
