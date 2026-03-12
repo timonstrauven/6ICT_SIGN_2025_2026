@@ -9,7 +9,7 @@ mymotor = RpiMotorLib.BYJMotor("MyMotor", "28BYJ")# variabele voor de motor gena
 while True: # while loop
     verplaatsing = int(input("Hoeveel mm wil je verplaatsen? ")) # vraag aan de gebruiker hoeveel mm hij wil verplaatsen, antwoord is de variabele verplaatsing
 
-    rotaties = verplaatsing/7 # variabele rotaties met waarde verplaatsing die de gebruiker ingaf delen door mijn klasnummer(7)
+    rotaties = verplaatsing//7 # variabele rotaties met waarde verplaatsing die de gebruiker ingaf delen door mijn klasnummer(7)
 
     print("Aantal rotaties" , rotaties) # print het aantal rotaties voor overzicht
 
