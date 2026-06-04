@@ -1,0 +1,30 @@
+import serial
+import time
+if __name__ == '__main__':
+    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+    ser.reset_input_buffer()
+    while True:
+        line = ser.readline().decode('utf-8').rstrip()
+       
+        temp, vochtig = line.split(",")# splitst de temp van de vochtigheid en zet het in 2 verschillende waarden
+        if temp > 30 and temp < 40 and temp == 40 and vochtig >= 20 and vochtig <= 30:#als de temperatuur groter is als 30 en kleiner is als 40 en als de temperatuur gelijk is aan 40 terwijl de vochtigheid tussen de 20 en 30 is dan...
+            motor = 33# draait de motor aan 33 procent snelheid
+        elif temp == 43 and vochtig >= 30 and vochtig <= 40:# anders als de temp gelijk is aan 43 en de vochtigheid is tussen of gelijk aan de 30 en 40
+            motor = 33# draait de motor aan 33 procent snelheid
+        elif temp > 40 or temp == 39 and vochtig >= 50 and vochtig <= 60: # als de temp groter is als 40 of gelijk is aan 39 en de vochtigheid gelijk is of tussen de 50 en 60 is dan...
+            motor = 66# draait de motor aan 66 procent snelheid
+        elif temp == 40 and vochtig >= 0 and vochtig <= 10: # anders als de temp gelijk is aan 40 en vochtigheid is gelijk aan of tussen de 0 en 10 dan...
+            motor = 66# draait de motor aan 66 procent snelheid
+        elif temp > 50:# anders als de temp groter is als 50 dan...
+            motor = 100# draait de motor aan 100 procent snelheid
+        else:#anders...
+            motor = 0# draait de motor niet
+        ser.write(f"{motor}".encode())# schrijft de waarde naar arduino
+        time.sleep(2)# 2 seconden wacthen
+        if ser.in_waiting > 0:
+            line = ser.readline().decode('utf-8').rstrip()
+    
+    
+            
+
+
